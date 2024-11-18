@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the trained model
-model_path = 'model1.h5'  # Path to your saved model file
+model_path = 'model1.h5'  
 CNN_model = load_model(model_path)
 
 # Test images directory path
@@ -14,17 +14,17 @@ test_image_paths = [
     r"C:\Users\gshar\OneDrive - Toronto Metropolitan University (RU)\Documents\GitHub\Gandhrav_Sharma_AER850_Project_2\Project 2 Data\Data\test\paint-off\IMG_20230511_095534_jpg.rf.3fc59d9b5d2995245d842b30d302e095.jpg"
 ]
 
-class_names = ['crack', 'missing-head', 'paint-off']  # Adjust class names as per your model's labels
+class_names = ['crack', 'missing-head', 'paint-off']  
 
 for img_path in test_image_paths:
     # Load and preprocess the image
     img = image.load_img(img_path, target_size=(100, 100))  # Use the target size used in training
     img_array = image.img_to_array(img) / 255.0  # Normalize the image
-    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    img_array = np.expand_dims(img_array, axis=0)  # batch dimension
 
     # Predict the class
     predictions = CNN_model.predict(img_array)
-    predicted_class = np.argmax(predictions)  # Find the class with the highest probability
+    predicted_class = np.argmax(predictions)  # Finding the class with the highest probability
     confidence = predictions[0][predicted_class]
 
     # Display the result
